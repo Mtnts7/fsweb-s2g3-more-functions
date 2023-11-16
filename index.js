@@ -16,10 +16,15 @@
   örnek output: ""
 */
 
-function dosyaAdiniBul(/* kodlar buraya */) {
-  // kodlar buraya
+function dosyaAdiniBul(path) {
+  if (path == "") {
+    return "";
+  }
+  const pathArr = path.split("/");
+  return pathArr[pathArr.length - 1];
 }
 
+console.log(dosyaAdiniBul("C:/Users/johnsmith/Music/Beethoven_5.mp3"));
 /*
   GÖREV 2
   - Input:  Bir sayı arrayini parametre olarak alacak bir fonksiyon oluştur.
@@ -38,8 +43,20 @@ function dosyaAdiniBul(/* kodlar buraya */) {
   örnek output: 104
 */
 
-function ortalamaBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamaBul(sayilar) {
+  if (sayilar.length == 0) {
+    return null;
+  }
+  let toplam = sayilar.reduce((toplam, item) => {
+    return toplam + item;
+  }, 0);
+  /*let toplam = 0;
+  sayilar.forEach(sayi => {
+    toplam +=sayi;
+      
+  });*/
+  let ortalama = toplam / sayilar.length;
+  return ortalama;
 }
 
 /*
@@ -57,15 +74,25 @@ function ortalamaBul(/* kodlar buraya */) {
   
   örnek input:  [50, -26, 153, 7]
   örnek output: [50, 153]
-
-  örnek input:  [109, 216, 288, 143, 71, 185, -278, 194, 5]
+*/
+const ornek = [109, 216, 288, 143, 71, 185, -278, 194, 5];
+/*
   örnek output: [109, 216, 288, 143, 185, 194]
 */
 
-function ortalamadanBuyukleriBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamadanBuyukleriBul(dizi, cb_ortalamaBul) {
+  const buyukSayi = [];
+  const sayilar = dizi.filter((sayi) => {
+    return sayi >= cb_ortalamaBul(dizi);
+  });
+  sayilar.map((rakam) => buyukSayi.push(rakam));
+  if (dizi.length == 0) {
+    return null;
+  } else {
+    return buyukSayi;
+  }
 }
-
+// console.log(ortalamadanBuyukleriBul(ornek, ortalamaBul));
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
   console.log("Kodlar sorunsuz çalışıyor!");
